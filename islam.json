@@ -1,0 +1,47 @@
+{
+    "name": "elwatannews",
+    "base_url": "",
+    "start_urls": [
+        "http://www.elwatannews.com/"
+    ],
+    "rules":[
+          {
+              "link_extractor":{
+                  "allow": ["www.elwatannews.com/section"],
+                  "deny": null,
+                  "allow_domains":null,
+                  "deny_extensions":null,
+                  "restrict_xpaths": null,
+                  "restrict_css": null,
+                  "tags": null,
+                  "attrs": null
+              },
+              "follow": true,
+              "callback": "parse_article"
+          }
+      ],
+    "document_selectors": {
+        "pages": {
+            "xpath": [
+                "//*[@class='more-than' and string-length(@href) > 0]/@href",
+                                "//*[@class='grid-view-2']/a/@href",
+                "//ul[@class='pagination']/li/a[contains(text(), '»')]/@href"
+            ]
+        },
+        "title": {
+            "xpath": [
+                "//*[@class='article_title']/text()"
+            ]
+        },
+        "text": {
+            "xpath": [
+                "//*[@class='article-description p-description']/p/text()"
+            ]
+        },
+        "authors": {
+            "xpath": [
+                "//*[@class='written_by']/a/text()"
+            ]
+        }
+    }
+}
